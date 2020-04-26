@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6a393683-beeb-4a3e-a67a-f611563f61d2" name="Default Changelist" comment="" />
+    <list default="true" id="6a393683-beeb-4a3e-a67a-f611563f61d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/directed_huge.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/directed_little.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/jarto/graphs/SccSearch.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/jarto/graphs/Graph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/jarto/graphs/Graph.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/jarto/main/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/jarto/main/Main.kt" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +37,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -38,10 +46,13 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Projects\Kotlin\Graphs\resources" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\Kotlin\Graphs\resources" />
       <recent name="D:\Projects\Kotlin\Graphs\src\com\jarto\main" />
       <recent name="D:\Projects\Kotlin\Graphs\src\com\jarto\graphs" />
-      <recent name="D:\Projects\Kotlin\Graphs\resources" />
       <recent name="D:\Projects\Kotlin\Graphs\src" />
     </key>
   </component>
@@ -73,7 +84,7 @@
     </configuration>
     <configuration name="com.jarto.main.MainKt" type="JetRunConfigurationType" factoryName="Kotlin" temporary="true" nameIsGenerated="true">
       <module name="Graphs" />
-      <option name="VM_PARAMETERS" value="" />
+      <option name="VM_PARAMETERS" value="-Xss32m" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -101,10 +112,36 @@
       <option name="presentableId" value="Default" />
       <updated>1587829308830</updated>
       <workItem from="1587829311355" duration="14899000" />
+      <workItem from="1587899767249" duration="16713000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/com/jarto/main/Main.kt</url>
+          <line>8</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+      </breakpoints>
+      <default-breakpoints>
+        <breakpoint enabled="true" type="java-exception" />
+      </default-breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

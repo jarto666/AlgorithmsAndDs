@@ -4,19 +4,41 @@ import com.jarto.graphs.*
 import java.io.File
 
 fun main(args: Array<String>) {
-    val fileName = "resources/graph.txt"
-    val graph = readGraphFromFile(fileName)
-
-    val depthMap = graph.breadthFirstSearch(1)
+    val bfsResult = bfs()
+    val sccResult = findAllScc()
 }
 
-fun readGraphFromFile(fileName: String): Graph {
-    val graph = Graph();
+/**
+ * Executes Breadth-first search on a graph.
+ *
+ * Returns depth map
+ */
+fun bfs(): MutableMap<Int, Int> {
+    val fileName = "resources/graph.txt"
+    val graph = readGraphFromFile(fileName, false)
+
+    return graph.breadthFirstSearch(1)
+}
+
+/**
+ * Executes Depth-first approach on a graph to find all Strongly-Connected Components.
+ *
+ * Returns SCCs grouped by leader
+ */
+fun findAllScc(): Map<Int, HashSet<Int>> {
+    val fileName = "resources/directed_huge.txt"
+    val graph = readGraphFromFile(fileName, true)
+    val result = sccSearch(graph)
+    return result.toList().sortedByDescending { (_, value) -> value.size }.toMap()
+}
+
+fun readGraphFromFile(fileName: String, directed: Boolean): Graph {
+    val graph = Graph(directed);
 
     File(fileName).forEachLine {
-        if (it.isNullOrBlank()) return@forEachLine
+        //if (it.isNullOrBlank()) return@forEachLine
 
-        val nodes = it.splitIgnoreEmpty('\t').map { it.toInt() }
+        val nodes = it.splitIgnoreEmpty('\t', ' ').map { it.toInt() }
         val sourceNode = nodes[0]
 
         if (nodes.size == 1) {
@@ -24,7 +46,8 @@ fun readGraphFromFile(fileName: String): Graph {
         }
 
         for(i in 1 until nodes.size) {
-            graph.addNode(sourceNode, nodes[i])
+            if (sourceNode != nodes[i])
+                graph.addNode(sourceNode, nodes[i])
         }
     }
 
