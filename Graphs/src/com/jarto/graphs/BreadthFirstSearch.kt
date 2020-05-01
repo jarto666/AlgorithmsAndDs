@@ -1,5 +1,6 @@
 package com.jarto.graphs
 
+import com.jarto.graphs.models.Graph
 import java.util.*
 
 fun Graph.breadthFirstSearch(startNode: Int): MutableMap<Int, Int> {

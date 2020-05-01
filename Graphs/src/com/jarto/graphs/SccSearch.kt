@@ -1,5 +1,6 @@
 package com.jarto.graphs
 
+import com.jarto.graphs.models.Graph
 import java.lang.Exception
 import java.util.*
 import kotlin.collections.HashSet

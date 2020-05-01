@@ -1,4 +1,4 @@
-package com.jarto.graphs
+package com.jarto.graphs.models
 
 data class Graph(val directed: Boolean = false) {
     val adjacencyMap = HashMap<Int, HashSet<Int>>()
