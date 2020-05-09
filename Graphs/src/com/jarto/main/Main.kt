@@ -1,20 +1,14 @@
 package com.jarto.main
 
 import com.jarto.graphs.*
-import com.jarto.graphs.models.Graph
-import com.jarto.graphs.models.GraphWeighted
-import com.jarto.graphs.models.MinHeap
+import com.jarto.graphs.models.*
 import java.io.File
 
 fun main(args: Array<String>) {
 //    val bfsResult = bfs()
 //    val sccResult = findAllScc()
-    val dijkstra = findShortestPathsByDijkstra()
-    val filteredShortPaths = dijkstra.entries
-        .filter { it.key in intArrayOf(7,37,59,82,99,115,133,165,188,197) }
-        .sortedBy { it.key }
-        .map { it.value }
-    println(filteredShortPaths)
+//    val dijkstra = findShortestPathsByDijkstra()
+    var s = findMedian()
 }
 
 /**
@@ -48,8 +42,20 @@ fun findAllScc(): Map<Int, HashSet<Int>> {
  */
 fun findShortestPathsByDijkstra(): MutableMap<Int, Int> {
     val fileName = "resources/weighted_graph.txt"
-    val graph = readWeghtedGraphFromFile(fileName)
+    val graph = readWeightedGraphFromFile(fileName)
     return graph.dijkstra(1)
+}
+
+fun findMedian(): Int {
+    val fileName = "resources/median.txt"
+
+    val nums = IntArray(10000)
+    var i = 0
+    File(fileName).forEachLine {
+        nums[i++] = it.toInt()
+    }
+
+    return medianMaintenance(nums)
 }
 
 fun readGraphFromFile(fileName: String, directed: Boolean): Graph {
@@ -65,7 +71,7 @@ fun readGraphFromFile(fileName: String, directed: Boolean): Graph {
             graph.addNode(sourceNode, null)
         }
 
-        for(i in 1 until nodes.size) {
+        for (i in 1 until nodes.size) {
             if (sourceNode != nodes[i])
                 graph.addNode(sourceNode, nodes[i])
         }
@@ -74,7 +80,7 @@ fun readGraphFromFile(fileName: String, directed: Boolean): Graph {
     return graph
 }
 
-fun readWeghtedGraphFromFile(fileName: String): GraphWeighted {
+fun readWeightedGraphFromFile(fileName: String): GraphWeighted {
     val graph = GraphWeighted();
 
     File(fileName).forEachLine {
@@ -83,12 +89,12 @@ fun readWeghtedGraphFromFile(fileName: String): GraphWeighted {
         val nodes = it.splitIgnoreEmpty('\t', ' ')
         val sourceNode = nodes[0].toInt()
 
-        for(i in 1 until nodes.size) {
+        for (i in 1 until nodes.size) {
             val pair = nodes[i].splitIgnoreEmpty(',').map { it.toInt() }
             graph.addNode(sourceNode, pair[0], pair[1])
         }
     }
-
+    
     return graph
 }
 

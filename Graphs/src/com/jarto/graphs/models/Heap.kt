@@ -1,111 +1,70 @@
 package com.jarto.graphs.models
 
-interface Keyed<T> {
-    val key: T
-}
+import com.jarto.graphs.interfaces.Heap
 
-class MinHeap<T : Comparable<T>, V> () where T : Keyed<V> {
-    private val items = mutableListOf<T>()
+class Heap<T : Comparable<T>> (private val maxSize: Int, val isMax: Boolean = false) : Heap<T> {
 
-    private val size: Int
-        get() = items.size
+    var size = 0
+        private set
 
-    val isEmpty: Boolean
-        get() = items.isEmpty()
+    private val items = MutableList<T?>(maxSize) { _ -> null }
 
-    fun isInHeap(key: T): Boolean {
-        return items.any() {it == key}
+    override fun readTop(): T? {
+        return items[0]
     }
 
-    fun getByKey(key: V): T? {
-        return items.firstOrNull { it.key == key }
-    }
-
-    fun setByKey(key: V, newValue: T) {
-        val index = items.indexOfFirst { it.key == key }
-        val oldValue = items[index]
-        items[index] = newValue
-
-        if (newValue < oldValue) {
-            decreaseKey(index)
+    fun minHeap() {
+        for (pos in (size/2)-1 downTo 0) {
+            heapify(pos)
         }
     }
 
-    fun decreaseKey(sourceIndex: Int) {
-        var currentIndex = sourceIndex
-
-        do {
-            if (currentIndex == 0) return
-
-            var parentIndex = getParentIndex(currentIndex)
-
-            if (parentIndex >= 0 && (items[parentIndex] < items[currentIndex]))
-                return
-
-            swap(parentIndex, currentIndex)
-            currentIndex = parentIndex
-        } while (true)
+    override fun extract(): T {
+        var extracted = items[0]
+        items[0] = items[--size]
+        items.removeAt(size)
+        heapify(0)
+        return extracted!!
     }
 
-    fun insert(key: T) {
-        items.add(key)
+    override fun insert(item: T) {
 
-        if (size == 1) return
+        if (size >= maxSize) {
+            throw Exception("Heap overflow")
+        }
 
-        var currentIndex = size - 1
-
-        do {
+        items[size++] = item
+        var currentIndex = size-1
+        while (items[currentIndex]!!.deeperThan(items[getParentIndex(currentIndex)]!!)) {
             var parentIndex = getParentIndex(currentIndex)
-
-            if (parentIndex >= 0 && (items[parentIndex] < items[currentIndex]))
-                return
-
-            swap(parentIndex, currentIndex)
+            swap(getParentIndex(currentIndex), currentIndex)
             currentIndex = parentIndex
-        } while (true)
+        }
     }
 
-    fun extract(): T {
-        val extracted = items[0]
+    private fun heapify(pos: Int) {
+        if (!isLeaf(pos)) {
+            val leftIndex = getLeftIndex(pos)
+            val rightIndex = getRightIndex(pos)
+            var largestChildIndex = pos
+            val current = items[pos]!!
 
-        items[0] = items[size-1]
-        items.removeAt(size-1)
-
-        if (isEmpty) return extracted
-
-        var currentIndex = 0
-
-        loop@ do {
-            val leftIndex = getLeftIndex(currentIndex)
-            val rightIndex = getRightIndex(currentIndex)
-
-            val left = items.elementAtOrNull(leftIndex)
-            val right = items.elementAtOrNull(rightIndex)
-            val current = items[currentIndex]
-            when {
-                left == null && right == null -> break@loop
-                left == null -> if (right!! < current)  {
-                    swap(currentIndex, rightIndex)
-                    currentIndex = rightIndex
-                } else break@loop
-                right == null -> if (left!! < current) {
-                    swap(currentIndex, leftIndex)
-                    currentIndex = leftIndex
-                } else break@loop
-                else -> {
-                    currentIndex = if (left < right && left < current) {
-                        swap(currentIndex, leftIndex)
-                        leftIndex
-                    } else if (right < left && right < current) {
-                        swap(currentIndex, rightIndex)
-                        rightIndex
-                    } else break@loop
-                }
+            if (leftIndex <= size-1 && items[leftIndex]!!.deeperThan(current)) {
+                largestChildIndex = leftIndex
+            }
+            if (rightIndex <= size-1 && items[rightIndex]!!.deeperThan(items[largestChildIndex]!!)) {
+                largestChildIndex = rightIndex
             }
 
-        } while (true)
+            if (largestChildIndex != pos) {
+                swap(pos, largestChildIndex);
+                heapify(largestChildIndex);
+            }
+        }
+    }
 
-        return extracted
+    private fun isLeaf(pos: Int): Boolean {
+        return pos >= size / 2 && pos <= size
     }
 
     private fun getParentIndex(i: Int): Int {
@@ -126,5 +85,9 @@ class MinHeap<T : Comparable<T>, V> () where T : Keyed<V> {
         val tmp = items[index1]
         items[index1] = items[index2]
         items[index2] = tmp
+    }
+
+    private fun T.deeperThan(t: T): Boolean {
+        return if (!isMax) this < t else this > t
     }
 }

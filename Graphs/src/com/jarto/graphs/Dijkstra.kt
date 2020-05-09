@@ -1,8 +1,8 @@
 package com.jarto.graphs
 
+import com.jarto.graphs.interfaces.Keyed
 import com.jarto.graphs.models.GraphWeighted
-import com.jarto.graphs.models.Keyed
-import com.jarto.graphs.models.MinHeap
+import com.jarto.graphs.models.HeapImpl
 import java.util.HashSet
 
 fun GraphWeighted.dijkstra(startNode: Int): MutableMap<Int, Int> {
@@ -22,7 +22,7 @@ fun GraphWeighted.dijkstra(startNode: Int): MutableMap<Int, Int> {
 
     }
 
-    val heap = MinHeap<HeapNode, Int>()
+    val heap = HeapImpl<HeapNode, Int>()
 
     heap.insert(HeapNode(startNode, 0))
     for (entry in this.adjacencyMap.entries) {
