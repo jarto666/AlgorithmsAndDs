@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6a393683-beeb-4a3e-a67a-f611563f61d2" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/J.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/jarto/graphs/MedianMaintenance.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/jarto/graphs/interfaces/Heap.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/jarto/graphs/interfaces/Keyed.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/jarto/graphs/models/HeapImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_jetbrains_kotlinx_kotlinx_coroutines_core_1_3_6.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/2sum.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/jarto/graphs/Dijkstra.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/jarto/graphs/Dijkstra.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/jarto/graphs/models/Heap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/jarto/graphs/models/Heap.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Graphs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/jarto/main/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/jarto/main/Main.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -27,6 +23,7 @@
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Gradle Kotlin DSL Build Script" />
       </list>
     </option>
   </component>
@@ -42,6 +39,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -52,6 +53,9 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.language.Kotlin" />
   </component>
@@ -138,7 +142,9 @@
       <workItem from="1588528510846" duration="3783000" />
       <workItem from="1588590834452" duration="1187000" />
       <workItem from="1588603311815" duration="3338000" />
-      <workItem from="1589039643399" duration="14045000" />
+      <workItem from="1589039643399" duration="14067000" />
+      <workItem from="1589126616331" duration="4144000" />
+      <workItem from="1589221265208" duration="8576000" />
     </task>
     <task id="LOCAL-00001" summary="Dijkstra">
       <created>1588367527900</created>
@@ -173,6 +179,18 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/com/jarto/main/Main.kt</url>
+          <line>20</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/src/com/jarto/main/Main.kt</url>
+          <line>102</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
       <default-breakpoints>
         <breakpoint enabled="true" type="java-exception" />
       </default-breakpoints>

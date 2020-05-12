@@ -1,14 +1,23 @@
 package com.jarto.main
 
-import com.jarto.graphs.*
-import com.jarto.graphs.models.*
+import com.jarto.graphs.breadthFirstSearch
+import com.jarto.graphs.dijkstra
+import com.jarto.graphs.medianMaintenance
+import com.jarto.graphs.models.Graph
+import com.jarto.graphs.models.GraphWeighted
+import com.jarto.graphs.sccSearch
 import java.io.File
+import java.util.*
+import kotlin.collections.HashSet
+import kotlinx.coroutines.*
 
 fun main(args: Array<String>) {
 //    val bfsResult = bfs()
 //    val sccResult = findAllScc()
 //    val dijkstra = findShortestPathsByDijkstra()
-    var s = findMedian()
+//    var s = findMedian()
+    var totalSums = findTotalNumbersOfSums()
+    println(totalSums)
 }
 
 /**
@@ -56,6 +65,42 @@ fun findMedian(): Int {
     }
 
     return medianMaintenance(nums)
+}
+
+fun findTotalNumbersOfSums(): Int {
+    val fileName = "resources/2sum.txt"
+
+    var set = HashSet<Int>()
+    var count = 0
+    File(fileName).forEachLine {
+        val num = it.toInt()
+        set.add(num)
+//        if (set.contains(num)) return@forEachLine
+//
+//        set.add(num)
+//        for(sum in -10000..10000) {
+//            if (num != sum-num && set.contains(sum-num)) {
+//                count++
+//            }
+//        }
+    }
+
+    val deferred = (-10000..10000).map { sum ->
+        GlobalScope.async {
+            for (a in set) {
+                if (sum != a*2 && sum-a in set) {
+                    return@async 1
+                }
+            }
+            return@async 0
+        }
+    }
+    var sum = 0
+    runBlocking {
+        sum = deferred.map { it.await() }.sum()
+    }
+
+    return sum
 }
 
 fun readGraphFromFile(fileName: String, directed: Boolean): Graph {
